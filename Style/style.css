@@ -1,0 +1,33 @@
+
+
+body{
+    margin: 0%;
+    padding: 0%;
+}
+nav {
+    background-color: #3f328a; /* Color de fondo del menú */
+    
+  }
+  
+  ul {
+    list-style: none; /* Quita los puntos de la lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Crea un contenedor flexible para los elementos de la lista */
+  }
+  
+  li {
+    margin: 0 10px; /* Añade un espacio entre los elementos de la lista */
+  }
+  
+  a {
+    display: block; /* Convierte los enlaces en bloques para que ocupen todo el ancho del contenedor */
+    padding: 10px; /* Añade un relleno alrededor de los enlaces */
+    color: #fff; /* Color de texto de los enlaces */
+    text-decoration: none; /* Quita el subrayado predeterminado de los enlaces */
+    font-weight: bold
+  }
+  
+  a:hover {
+    background-color: #3538c9; /* Color de fondo del enlace al pasar el ratón por encima */
+  }
