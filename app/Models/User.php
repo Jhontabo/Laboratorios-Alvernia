@@ -1,22 +1,24 @@
 <?php
 
+// app/Models/Usuario.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
-class Usuario extends Authenticatable
+class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use Notifiable, HasRoles;
 
-    // Definir la tabla asociada
-    protected $table = 'usuarios';
+    // Nombre de la tabla
+    protected $table = 'users'; // Ya tienes la tabla correcta
 
-    // Definir la clave primaria
-    protected $primaryKey = 'id_usuario';
+    // Clave primaria
+    protected $primaryKey = 'id_usuario'; // Esto también ya lo has configurado
 
-    // Definir los atributos que pueden ser asignados masivamente
+    // Atributos asignables en masa
     protected $fillable = [
         'nombre',
         'apellido',
@@ -25,10 +27,16 @@ class Usuario extends Authenticatable
         'Direccion',
     ];
 
-    // Ocultar el remember_token para que no se exponga al serializar
+    // Atributos ocultos
     protected $hidden = [
         'remember_token',
     ];
 
-    // Las marcas de tiempo están habilitadas, por lo que no necesitas agregar $timestamps = true, ya que es el comportamiento por defecto.
+    public $timestamps = true;
+
+    // Si no usas una columna virtual, agrega este accesorio
+    public function getNameAttribute()
+    {
+        return $this->nombre . ' ' . $this->apellido;
+    }
 }

@@ -8,21 +8,23 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('id_usuario');
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->string('correo_electronico')->unique();
-            $table->string('telefono')->nullable();
-            $table->string('Direccion');
-            $table->string('name')->virtualAs('CONCAT(nombre, " ", apellido)'); // Nuevo campo concatenado
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('users')) {
+            Schema::create('users', function (Blueprint $table) {
+                $table->bigIncrements('id_usuario');
+                $table->string('nombre');
+                $table->string('apellido');
+                $table->string('correo_electronico')->unique();
+                $table->string('telefono')->nullable();
+                $table->string('Direccion');
+                $table->string('name')->virtualAs('CONCAT(nombre, " ", apellido)');
+                $table->rememberToken();
+                $table->timestamps();
+            });
+        }
     }
 
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('users');
     }
 };
