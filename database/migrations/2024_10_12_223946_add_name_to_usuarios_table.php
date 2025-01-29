@@ -9,8 +9,8 @@ return new class extends Migration
     public function up()
     {
         // Verificar si la columna 'name' ya existe antes de agregarla
-        Schema::table('usuarios', function (Blueprint $table) {
-            if (!Schema::hasColumn('usuarios', 'name')) {
+        Schema::table('users', function (Blueprint $table) {
+            if (!Schema::hasColumn('users', 'name')) {
                 $table->string('name')->virtualAs('CONCAT(nombre, " ", apellido)');
             }
         });
@@ -18,7 +18,7 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::table('usuarios', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('name');
         });
     }
